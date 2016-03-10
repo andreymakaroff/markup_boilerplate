@@ -1,0 +1,35 @@
+$screenWidth: 1200px;
+$wrapperPadding: 15px;
+$large: 1199px;
+$small: 500px;
+@mixin clearfix {
+  &:after {
+    display: table;
+    content: "";
+    clear: both;
+  }
+}
+@mixin response($media) {
+  @if $media == tablet {
+    @media only screen and (max-width: $large) { @content; }
+  }
+  @else if $media == iphone {
+    @media only screen and (max-width: $small) { @content; }
+  }
+}
+@function image-url($fileName) {
+  @return url('../img/#{$fileName}');
+}
+@function font-url($fileName) {
+  @return url('../fonts/#{$fileName}');
+}
+%wrapper {
+  width: 100%;
+  @include clearfix;
+}
+%inner {
+  width: $screenWidth;
+  padding: 0 $wrapperPadding;
+  margin: 0 auto;
+  @include clearfix;
+}
